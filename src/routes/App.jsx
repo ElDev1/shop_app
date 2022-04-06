@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../containers/Layout';
 import Login from '../Pages/Login';
-import RecoveryPassword from '../Pages/RecoveryPassword';
+import PasswordRecovery from '../Pages/PasswordRecovery';
 import Home from '../Pages/Home';
 import NotFound from '../Pages/NotFound';
 import SendEmail from '../Pages/SendEmail';
@@ -20,7 +20,7 @@ export const App = () => {
         <Routes>
           <Route exact path="/" element={<Home/>} />
           <Route exact path='/login' element={<Login/>} />
-          <Route exact path='/recovery-password' element={<RecoveryPassword/>} />
+          <Route exact path='/password-recovery' element={<PasswordRecovery/>} />
           <Route exact path='/send-email' element={<SendEmail/>} />
           <Route exact path='/new-password' element={<NewPassword/>} />
           <Route exact path='/account' element={<MyAccount/>} />
