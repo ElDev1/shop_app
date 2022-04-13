@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
         publicPath: '/',
     },
@@ -13,36 +13,36 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            '@components': path.resolve(__dirname, 'src/components'),
-            '@containers': path.resolve(__dirname, 'src/containers'),
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@containers': path.resolve(__dirname, 'src/containers/'),
+            '@pages': path.resolve(__dirname, 'src/pages/'),
             '@styles': path.resolve(__dirname, 'src/styles'),
-            '@icons': path.resolve(__dirname, 'src/assets/icons'),
-            '@logos': path.resolve(__dirname, 'src/assets/logos')
-        }
+            '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+            '@logos': path.resolve(__dirname, 'src/assets/logos/'),
+            '@hooks': path.resolve(__dirname, 'src/hooks/'),
+        },
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx)?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
                 }
             },
             {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                    }
-                ]
+                test: /\.html?/,
+                use: {
+                    loader: 'html-loader'
+                }
             },
             {
-                test: /\.(css|scss)$/,
+                test: /\.(css|scss)/,
                 use: [
                     "style-loader",
                     "css-loader",
-                    "sass-loader",
+                    "sass-loader"
                 ]
             },
             {
@@ -61,9 +61,10 @@ module.exports = {
         }),
     ],
     devServer: {
-        static: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 3000,
+        allowedHosts: path.join(__dirname, 'build'),
         historyApiFallback: true,
+        compress: true,
+        port: 8080,
+        open: true,
     }
 }
